@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    <style>
+      .droptarget {
+        float: left; 
+        width: 100px; 
+        height: 35px;
+        margin: 15px;
+        padding: 10px;
+        border: 1px solid #aaaaaa;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+
+    <center class="padding">
+      <button type="button" class="btn btn-danger" onclick="myFunction()">Click me</button>
+      <p id="demo"></p>
+    </center>
+
+    <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <p ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="dragtarget">Drag me!</p>
+    </div>
+
+    <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+    <p id="demo"></p>
+
+  <script>
+  function myFunction() { 
+    document.getElementById("demo").innerHTML = "Hello World";
+    // document.getElementById("demo").innerHTML = "Ello";
+  }
+
+  function dragStart(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+  }
+
+  function dragging(event) {
+    document.getElementById("demo").innerHTML = "The p element is being dragged";
+  }
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    document.getElementById("demo").innerHTML = "The p element was dropped";
+  }
+  </script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  </body>
+</html>
